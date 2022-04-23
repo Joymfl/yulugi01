@@ -12,4 +12,13 @@ pub mod yulugi01 {
 }
 
 #[derive(Accounts)]
-pub struct Initialize {}
+pub struct Initialize {
+
+}
+
+#[account]
+pub struct Message{
+    data:String,
+    last_message: String,
+
+}
