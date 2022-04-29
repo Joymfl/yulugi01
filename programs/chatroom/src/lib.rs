@@ -11,7 +11,7 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
 #[program]
 pub mod chatroom {
-    use crate::instruction::SendMessage;
+    // use crate::instruction::SendMessage;
 
     use super::*;
 
@@ -22,7 +22,7 @@ pub mod chatroom {
         chat_room.user2 = user2;
         Ok(())
     }
-    pub fn sendMessage(ctx:Context<Send>, current_message: String, user: Pubkey) -> Result<()> {
+    pub fn send_message(ctx:Context<Send>, current_message: String, user: Pubkey) -> Result<()> {
         let chat_room = &mut ctx.accounts.chat_room;
         chat_room.current_message = current_message;
         chat_room.user1 = user;

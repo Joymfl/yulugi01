@@ -16,8 +16,16 @@ describe("chatroom", () => {
     // Add your test here.
     const tx = await program.methods.initialize(message, chatRoom_user1.publicKey, chatRoom_user2.publicKey).accounts({
       chatRoom: chatRoom.publicKey,
-      user: chatRoom_user1.secretKey,
-    }).signers([chatRoom_user1]).rpc();
+    }).signers([chatRoom]).rpc();
     console.log("Your transaction signature", tx);
   });
+
+  it("Message Sent", async () => {
+    const tx = await program.methods.sendMessage(message, chatRoom_user1.publicKey).accounts({
+      chatRoom: chatRoom.publicKey
+    }).rpc();
+
+    let account = program.account.chatroom.fetch(chatRoom.publicKey);
+    console.log((await account).currentMessage);
+  })
 });
